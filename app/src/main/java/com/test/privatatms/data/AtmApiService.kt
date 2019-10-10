@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 interface AtmApiService {
 
-    @GET("/infrastructure?json&atm")
+    @GET("p24api/infrastructure?json&atm")
     fun getAtmList(@Query("city") city: String): Call<AtmListResponse>
 }

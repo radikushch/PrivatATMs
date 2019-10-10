@@ -8,7 +8,6 @@ interface MvpContract {
     }
 
     interface MvpPresenter {
-        fun create()
         fun destroy()
     }
 }

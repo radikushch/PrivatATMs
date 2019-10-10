@@ -7,7 +7,12 @@ import com.test.privatatms.presentation.base.BaseFragment
 import javax.inject.Inject
 import android.R.id
 import android.graphics.Color
+import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import com.test.privatatms.extensions.invisible
+import com.test.privatatms.extensions.visible
 import kotlinx.android.synthetic.main.fragment_atm_list.*
 
 
@@ -22,16 +27,24 @@ class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
     }
 
     override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        loadingProgressBar.visible()
     }
 
     override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        loadingProgressBar.invisible()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
+        showLoading()
+        atmListPresenter.getAtmList("Киев").observe(this , Observer {
+            if(it.isSuccess) {
+                Log.e("atms", it.data.toString())
+            }else {
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun setupViews() {

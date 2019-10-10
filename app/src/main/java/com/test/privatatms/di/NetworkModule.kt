@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Module
 object NetworkModule {
 
-    private const val BASE_ENDPOINT = " https://api.privatbank.ua/p24api"
+    private const val BASE_ENDPOINT = "https://api.privatbank.ua/"
 
     @Provides
     @Singleton
