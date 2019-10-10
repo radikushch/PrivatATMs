@@ -2,7 +2,13 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android-extensions'
+
+apply from: 'dependencies.gradle'
+
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion 29
@@ -26,9 +32,39 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    implementation kotlin.ktxCore
+
+    implementation androidLibs.constraintLayout
+    implementation androidLibs.appCompat
+
+    implementation androidLibs.lifecycleExt
+    kapt androidLibs.lifecyleCompiler
+
+    implementation libs.coroutinesCore
+    implementation libs.coroutinesAndroid
+
+    implementation libs.navigationfragmentKtx
+    implementation libs.navigationUiKtx
+    implementation libs.annotation
+
+    implementation libs.dagger
+    implementation libs.daggerAndroid
+    implementation libs.daggerAndroidSupport
+    kapt libs.daggerCompiler
+    kaptTest libs.daggerCompiler
+    kapt libs.daggerProcessor
+
+    implementation libs.retrofit
+    implementation libs.okhttp
+    implementation libs.gsonConverter
+
+    implementation libs.roomKtx
+    implementation libs.roomRuntime
+    kapt libs.roomCompiler
+
+    testImplementation testLib.junit
+    androidTestImplementation testLib.junit
+    androidTestImplementation testLib.espresso
+    androidTestImplementation testLib.testRunner
 }
