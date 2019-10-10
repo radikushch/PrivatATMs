@@ -2,7 +2,7 @@ package com.test.privatatms.di.app
 
 import android.app.Application
 import com.test.privatatms.PrivatATMsApp
-import com.test.privatatms.di.ActivityBuilder
+import com.test.privatatms.di.builders.ActivityBuilder
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

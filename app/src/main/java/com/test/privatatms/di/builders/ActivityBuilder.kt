@@ -1,4 +1,4 @@
-package com.test.privatatms.di
+package com.test.privatatms.di.builders
 
 import com.test.privatatms.presentation.MainActivity
 import dagger.Module

@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/atmListFragment"
-        android:name="com.test.privatatms.presentation.AtmListFragment"
+        android:name="com.test.privatatms.presentation.atm_list.AtmListFragment"
         android:label="AtmListFragment" />
 </navigation>
