@@ -7,14 +7,9 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.test.privatatms.di.viewmodel.ViewModelFactory
 import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
 abstract class BaseFragment : DaggerFragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
 
     protected lateinit var navController: NavController
 
