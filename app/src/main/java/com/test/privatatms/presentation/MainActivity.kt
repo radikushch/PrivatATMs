@@ -1,6 +1,7 @@
-package com.test.privatatms
+package com.test.privatatms.presentation
 
 import android.os.Bundle
+import com.test.privatatms.R
 import dagger.android.support.DaggerAppCompatActivity
 
 class MainActivity : DaggerAppCompatActivity() {
