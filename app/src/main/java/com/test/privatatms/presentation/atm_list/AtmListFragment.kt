@@ -10,4 +10,15 @@ class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
 
     override fun layout(): Int = R.layout.fragment_atm_list
 
+    override fun destroyPresenter() {
+        atmListPresenter.destroy()
+    }
+
+    override fun showLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun hideLoading() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

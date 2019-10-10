@@ -7,4 +7,7 @@ class AtmListPresenterImpl @Inject constructor(
     private val atmListView: AtmListContract.AtmListView
 ): BasePresenter(), AtmListContract.AtmListPresenter {
 
+    override fun create() {
+
+    }
 }

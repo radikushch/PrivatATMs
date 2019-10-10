@@ -27,4 +27,11 @@ abstract class BaseFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
     }
+
+    abstract fun destroyPresenter()
+
+    override fun onDestroy() {
+        destroyPresenter()
+        super.onDestroy()
+    }
 }
