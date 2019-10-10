@@ -2,6 +2,7 @@ package com.test.privatatms.di.app
 
 import android.app.Application
 import com.test.privatatms.PrivatATMsApp
+import com.test.privatatms.di.NetworkModule
 import com.test.privatatms.di.builders.ActivityBuilder
 import dagger.BindsInstance
 import dagger.Component
@@ -14,7 +15,8 @@ import javax.inject.Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     AppProvideModule::class,
-    ActivityBuilder::class
+    ActivityBuilder::class,
+    NetworkModule::class
 ])
 interface AppComponent : AndroidInjector<DaggerApplication> {
 
