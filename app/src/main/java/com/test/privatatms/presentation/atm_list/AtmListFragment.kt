@@ -5,16 +5,37 @@ import android.view.View
 import com.test.privatatms.R
 import com.test.privatatms.presentation.base.BaseFragment
 import javax.inject.Inject
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.test.privatatms.extensions.invisible
 import com.test.privatatms.extensions.visible
+import com.test.privatatms.model.Atm
+import com.test.privatatms.presentation.atm_list.adapter.AtmAdapter
 import kotlinx.android.synthetic.main.fragment_atm_list.*
 
 class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
 
     @Inject lateinit var atmListPresenter: AtmListPresenterImpl
+
+    private val atmAdapter: AtmAdapter by lazy {
+        AtmAdapter(ArrayList(),
+            {
+                openAtmDetailScreen()
+            },
+            {
+                atmFavoriteClick(it)
+            })
+    }
+
+    private fun atmFavoriteClick(atm: Atm) {
+        atmListPresenter.makeAtmFavorite(atm)
+    }
+
+    private fun openAtmDetailScreen() {
+
+    }
 
     override fun layout(): Int = R.layout.fragment_atm_list
 
@@ -33,11 +54,16 @@ class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showLoading()
-        atmListPresenter.getAtmList("Киев").observe(this , Observer {
-            if(it.isSuccess) {
-                Log.e("atms", it.data.toString())
+        atmsRecyclerView.adapter = atmAdapter
+        atmsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        atmListPresenter.getAtmList("Киев").observe(this , Observer {viewResultState ->
+            hideLoading()
+            if(viewResultState.isSuccess) {
+                viewResultState.data?.let {
+                    atmAdapter.swapData(it)
+                }
             }else {
-                Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), getString(viewResultState.error!!) , Toast.LENGTH_LONG).show()
             }
         })
     }

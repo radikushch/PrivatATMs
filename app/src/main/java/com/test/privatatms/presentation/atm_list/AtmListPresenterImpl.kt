@@ -2,6 +2,7 @@ package com.test.privatatms.presentation.atm_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.test.privatatms.R
 import com.test.privatatms.data.ApiResult
 import com.test.privatatms.data.AtmRepository
 import com.test.privatatms.model.Atm
@@ -24,10 +25,14 @@ class AtmListPresenterImpl @Inject constructor(
                 val viewResultState = ViewResultState(isSuccess = true, data = result.data)
                 _atmsListLiveData.postValue(viewResultState)
             }else {
-                val error = (result as ApiResult.Error).exception
+                val viewResultState = ViewResultState<List<Atm>>(isSuccess = false, error = R.string.loading_error)
+                _atmsListLiveData.postValue(viewResultState)
             }
         }
         return _atmsListLiveData
     }
 
+    override fun makeAtmFavorite(atm: Atm) {
+        atm.isFavourite = !atm.isFavourite
+    }
 }

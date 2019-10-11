@@ -1,19 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="12dp"
+    >
 
-    <TextView
-        android:id="@+id/atmPlaceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="place"
-        android:layout_margin="@dimen/toolbar_padding"
-        />
+            <TextView
+                android:id="@+id/atmTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="ATM"
+                android:layout_margin="@dimen/clickable_padding"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/atmCityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="@dimen/clickable_padding"
+                tools:text="Kiev"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/atmAddressTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/atmTypeTextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/atmTypeTextView"
+                app:layout_constraintEnd_toStartOf="@id/atmFavouriteImageView"
+                tools:text="asfgjaslkfhasgfkhasgkhasdglkdshgdslkghdslkghsafgsafasfsafsafasfsafasfasfasfasf"
+                android:layout_marginTop="@dimen/clickable_padding"
+                android:layout_marginBottom="@dimen/clickable_padding"
+                android:layout_marginEnd="@dimen/clickable_padding"
+                android:textColor="@color/colorSecondary"
+                android:textSize="14sp"
+                />
+
+            <ImageView
+                android:id="@+id/atmFavouriteImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:src="@drawable/ic_favorite_border"
+                app:layout_constraintTop_toTopOf="@id/atmAddressTextView"
+                app:layout_constraintBottom_toBottomOf="@id/atmAddressTextView"
+                app:layout_constraintStart_toStartOf="@id/atmCityTextView"
+                app:layout_constraintEnd_toEndOf="@id/atmCityTextView"
+                android:padding="@dimen/clickable_padding"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+</FrameLayout>

@@ -13,5 +13,6 @@ interface AtmListContract {
 
     interface AtmListPresenter : MvpContract.MvpPresenter {
         fun getAtmList(city: String): LiveData<ViewResultState<List<Atm>>>
+        fun makeAtmFavorite(atm: Atm)
     }
 }
