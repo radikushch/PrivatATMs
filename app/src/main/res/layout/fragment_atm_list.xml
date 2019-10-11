@@ -19,20 +19,32 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/toolbar_padding"
             android:src="@drawable/ic_favorite_border"
+            android:padding="@dimen/clickable_padding"
+            />
+
+        <ImageView
+            android:id="@+id/cityImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/favoritesImageView"
+            android:src="@drawable/ic_city"
             android:padding="@dimen/clickable_padding"
             />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/atmSearchView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
+            style="@style/SearchViewStyle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/favoritesImageView"
+            app:layout_constraintEnd_toStartOf="@id/cityImageView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="@dimen/toolbar_padding"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="@dimen/clickable_padding"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

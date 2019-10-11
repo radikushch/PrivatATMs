@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PrivatATMs</string>
+    <string name="pick_address">Введите адрес</string>
+
 </resources>
