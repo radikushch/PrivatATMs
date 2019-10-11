@@ -6,7 +6,7 @@ MinSdkVersion: 21
 
 Used technologies:
 * Kotlin
-* MVVM
+* MVP
 * Room
 * Coroutines
 * Dagger2
