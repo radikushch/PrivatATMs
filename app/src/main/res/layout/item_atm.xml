@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/layer_list_shadow_border">
+
+        <TextView
+            android:id="@+id/atmCityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/clickable_padding"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ATM" />
+
+        <TextView
+            android:id="@+id/atmAddressTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/clickable_padding"
+            android:layout_marginEnd="@dimen/clickable_padding"
+            android:layout_marginBottom="@dimen/clickable_padding"
+            android:textColor="@color/colorSecondary"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/atmCityTextView"
+            app:layout_constraintStart_toStartOf="@id/atmCityTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="asfgjaslkfhasgfkhasgkhasdglkdshgdslkghdslkghsafgsafasfsafsafasfsafasfasfasfasf" />
+
+        <ImageView
+            android:id="@+id/atmFavouriteImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/clickable_padding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:src="@drawable/ic_favorite_border" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

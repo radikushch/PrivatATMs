@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PrivatATMs.iml" filepath="$PROJECT_DIR$/PrivatATMs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/PrivatATMs-app.iml" filepath="$PROJECT_DIR$/app/PrivatATMs-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/radik-PrivatATMs.iml" filepath="$PROJECT_DIR$/radik-PrivatATMs.iml" />
+    </modules>
+  </component>
+</project>
