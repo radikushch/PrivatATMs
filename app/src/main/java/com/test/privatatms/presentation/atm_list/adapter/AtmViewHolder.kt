@@ -13,26 +13,45 @@ class AtmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(atm: Atm) {
         itemView.apply {
-            atmTypeTextView.text = atm.type
             atmCityTextView.text = atm.cityRU
             atmAddressTextView.text = atm.fullAddressRu
-            if(atm.isFavourite) {
+            if (atm.isFavourite) {
                 atmFavouriteImageView
-                    .setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_favorite))
+                    .setImageDrawable(
+                        ContextCompat.getDrawable(
+                            itemView.context,
+                            R.drawable.ic_favorite
+                        )
+                    )
             } else {
                 atmFavouriteImageView
-                    .setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_favorite_border))
+                    .setImageDrawable(
+                        ContextCompat.getDrawable(
+                            itemView.context,
+                            R.drawable.ic_favorite_border
+                        )
+                    )
             }
         }
     }
 
     fun rebind(atm: Atm) {
-        if(atm.isFavourite) {
+        if (atm.isFavourite) {
             itemView.atmFavouriteImageView
-                .setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_favorite))
+                .setImageDrawable(
+                    ContextCompat.getDrawable(
+                        itemView.context,
+                        R.drawable.ic_favorite
+                    )
+                )
         } else {
             itemView.atmFavouriteImageView
-                .setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_favorite_border))
+                .setImageDrawable(
+                    ContextCompat.getDrawable(
+                        itemView.context,
+                        R.drawable.ic_favorite_border
+                    )
+                )
         }
     }
 }

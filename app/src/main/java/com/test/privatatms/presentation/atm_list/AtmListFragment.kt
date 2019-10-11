@@ -17,7 +17,8 @@ import kotlinx.android.synthetic.main.fragment_atm_list.*
 
 class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
 
-    @Inject lateinit var atmListPresenter: AtmListPresenterImpl
+    @Inject
+    lateinit var atmListPresenter: AtmListPresenterImpl
 
     private val atmAdapter: AtmAdapter by lazy {
         AtmAdapter(ArrayList(),
@@ -53,17 +54,38 @@ class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+        scrollTopFAB.setOnClickListener { atmsRecyclerView.scrollToPosition(0) }
         showLoading()
-        atmsRecyclerView.adapter = atmAdapter
-        atmsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        atmListPresenter.getAtmList("Киев").observe(this , Observer {viewResultState ->
+        atmListPresenter.getAtmList("Киев").observe(this, Observer { viewResultState ->
             hideLoading()
-            if(viewResultState.isSuccess) {
+            if (viewResultState.isSuccess) {
                 viewResultState.data?.let {
                     atmAdapter.swapData(it)
                 }
-            }else {
-                Toast.makeText(requireContext(), getString(viewResultState.error!!) , Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(viewResultState.error!!),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        })
+    }
+
+
+    private fun setupRecyclerView() {
+        atmsRecyclerView.adapter = atmAdapter
+        atmsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        atmsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > dy * 0.3) {
+                    scrollTopFAB.hide()
+                } else if (dy < dy * 0.3) {
+                    scrollTopFAB.show()
+                }
             }
         })
     }
