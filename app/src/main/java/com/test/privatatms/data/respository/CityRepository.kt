@@ -1,8 +1,6 @@
 package com.test.privatatms.data.respository
 
-import android.content.res.Resources
 import com.test.privatatms.data.ApiResult
-import com.test.privatatms.data.database.CityDao
 import com.test.privatatms.data.datasource.CityDataSource
 import com.test.privatatms.model.city.City
 import com.test.privatatms.model.city.CityListResponse
@@ -10,23 +8,22 @@ import com.test.privatatms.utils.isOnline
 import javax.inject.Inject
 
 class CityRepository @Inject constructor(
-    private val cityDataSource: CityDataSource,
-    private val cityDao: CityDao
+    private val cityDataSource: CityDataSource
 ) {
 
     fun getUkrainianCities(): List<City> {
         return if(isOnline()) {
             loadCities()
         }else {
-            cityDao.getAllCities()
+            cityDataSource.getUkrainianCitiesLocal()
         }
     }
 
     private fun loadCities(): List<City>{
-        return when (val result = cityDataSource.getUkrainianCities()) {
+        return when (val result = cityDataSource.getUkrainianCitiesRemote()) {
             is ApiResult.Success -> {
                 val cities = parseCitiesNames(result.data)
-                cityDao.insertCities(cities)
+                cityDataSource.insertCities(cities)
                 cities
             }
             is ApiResult.Error -> emptyList()

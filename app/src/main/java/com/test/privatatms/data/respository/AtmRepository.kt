@@ -11,7 +11,7 @@ class AtmRepository @Inject constructor(
 ) {
 
     fun getAtms(city: String): ApiResult<List<Atm>> {
-        return when (val apiResult = atmDataSource.getAllAtms(city)) {
+        return when (val apiResult = atmDataSource.getAllAtmsRemote(city)) {
             is ApiResult.Success -> ApiResult.Success(apiResult.data.devices)
             is ApiResult.Error -> ApiResult.Error(apiResult.exception)
         }

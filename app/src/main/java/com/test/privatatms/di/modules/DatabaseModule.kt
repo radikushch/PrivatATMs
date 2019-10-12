@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 import androidx.room.Room
+import com.test.privatatms.data.database.AtmDao
 import com.test.privatatms.data.database.CityDao
 import com.test.privatatms.data.database.PrivatATMsDatabase
 
@@ -18,6 +19,14 @@ object DatabaseModule {
         return database.cityDao()
     }
 
+
+    @JvmStatic
+    @Provides
+    @Singleton
+    fun provideAtmDao(database: PrivatATMsDatabase): AtmDao {
+        return database.atmDao()
+    }
+
     @JvmStatic
     @Singleton
     @Provides
@@ -26,6 +35,7 @@ object DatabaseModule {
             context,
             PrivatATMsDatabase::class.java,
             "privat-atm-database"
-        ).build()
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 }
