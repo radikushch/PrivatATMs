@@ -2,7 +2,7 @@
 
 Application for displaying a list of ATMs in a selected city.
 
-MinSdkVersion: 21
+MinSdkVersion: 19
 
 Used technologies:
 * Android Jetpack
