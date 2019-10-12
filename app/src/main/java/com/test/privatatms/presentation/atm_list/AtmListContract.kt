@@ -14,5 +14,6 @@ interface AtmListContract {
     interface AtmListPresenter : MvpContract.MvpPresenter {
         fun loadAtmList(city: City)
         fun makeAtmFavorite(atm: Atm)
+        fun loadFavouritesAtms()
     }
 }

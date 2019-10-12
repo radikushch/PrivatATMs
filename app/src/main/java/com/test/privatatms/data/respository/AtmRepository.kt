@@ -38,4 +38,8 @@ class AtmRepository @Inject constructor(
     fun updateAtm(atm: Atm) {
         atmDataSource.updateAtm(atm)
     }
+
+    fun getFavoritesAtms(): List<Atm> {
+        return atmDataSource.getFavotitesAtms()
+    }
 }

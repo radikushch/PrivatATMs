@@ -46,4 +46,14 @@ class AtmsPresenter @Inject constructor(
         }
     }
 
+    override fun loadFavouritesAtms() {
+        atmListView.showLoading()
+        launch {
+            val atms = atmRepository.getFavoritesAtms()
+            withContext(Dispatchers.Main) {
+                atmListView.hideLoading()
+                atmListView.swapAtmList(ViewResultState(isSuccess = true, data = atms))
+            }
+        }
+    }
 }
