@@ -6,12 +6,12 @@ import com.test.privatatms.R
 import com.test.privatatms.presentation.base.BaseFragment
 import javax.inject.Inject
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.privatatms.extensions.invisible
 import com.test.privatatms.extensions.visible
 import com.test.privatatms.model.Atm
+import com.test.privatatms.presentation.ViewResultState
 import com.test.privatatms.presentation.atm_list.adapter.AtmAdapter
 import kotlinx.android.synthetic.main.fragment_atm_list.*
 
@@ -35,7 +35,7 @@ class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
     }
 
     private fun openAtmDetailScreen() {
-
+        //todo
     }
 
     override fun layout(): Int = R.layout.fragment_atm_list
@@ -56,23 +56,23 @@ class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         scrollTopFAB.setOnClickListener { atmsRecyclerView.scrollToPosition(0) }
-        showLoading()
-        atmListPresenter.getAtmList("Киев").observe(this, Observer { viewResultState ->
-            hideLoading()
-            if (viewResultState.isSuccess) {
-                viewResultState.data?.let {
-                    atmAdapter.swapData(it)
-                }
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    getString(viewResultState.error!!),
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        })
+
+        atmListPresenter.getAtmList("Киев")
     }
 
+    override fun swapAtmList(viewResultState: ViewResultState<List<Atm>>) {
+        if (viewResultState.isSuccess) {
+            viewResultState.data?.let {
+                atmAdapter.swapData(it)
+            }
+        } else {
+            Toast.makeText(
+                requireContext(),
+                getString(viewResultState.error!!),
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
 
     private fun setupRecyclerView() {
         atmsRecyclerView.adapter = atmAdapter
