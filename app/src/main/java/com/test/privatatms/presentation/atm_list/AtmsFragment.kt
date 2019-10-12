@@ -103,7 +103,7 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
         if(isFavoriteList) {
             favoritesImageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_border))
             isFavoriteList = false
-            selectedCity?.let { atmListPresenter.loadAtmList(it) }
+            atmListPresenter.loadAtmList(selectedCity ?: City(name = ""))
         }else {
             favoritesImageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite))
             isFavoriteList = true
