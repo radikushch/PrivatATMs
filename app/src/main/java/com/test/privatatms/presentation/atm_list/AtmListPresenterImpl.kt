@@ -2,7 +2,7 @@ package com.test.privatatms.presentation.atm_list
 
 import com.test.privatatms.R
 import com.test.privatatms.data.ApiResult
-import com.test.privatatms.data.AtmRepository
+import com.test.privatatms.data.respository.AtmRepository
 import com.test.privatatms.model.atm.Atm
 import com.test.privatatms.presentation.ViewResultState
 import com.test.privatatms.presentation.base.BasePresenter

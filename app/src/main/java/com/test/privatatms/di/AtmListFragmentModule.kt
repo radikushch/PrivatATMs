@@ -1,6 +1,6 @@
 package com.test.privatatms.di
 
-import com.test.privatatms.data.AtmRepository
+import com.test.privatatms.data.respository.AtmRepository
 import com.test.privatatms.presentation.atm_list.AtmListContract
 import com.test.privatatms.presentation.atm_list.AtmListPresenterImpl
 import dagger.Module

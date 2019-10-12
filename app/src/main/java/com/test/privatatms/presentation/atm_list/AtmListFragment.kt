@@ -13,6 +13,7 @@ import com.test.privatatms.extensions.visible
 import com.test.privatatms.model.atm.Atm
 import com.test.privatatms.presentation.ViewResultState
 import com.test.privatatms.presentation.atm_list.adapter.AtmAdapter
+import com.test.privatatms.presentation.cities_list.CitiesFragment
 import kotlinx.android.synthetic.main.fragment_atm_list.*
 
 class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
@@ -56,7 +57,7 @@ class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         scrollTopFAB.setOnClickListener { atmsRecyclerView.scrollToPosition(0) }
-        atmListPresenter.getAtmList("Киев")
+        CitiesFragment().show(childFragmentManager, "tag")
     }
 
     override fun swapAtmList(viewResultState: ViewResultState<List<Atm>>) {

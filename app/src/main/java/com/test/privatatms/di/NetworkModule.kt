@@ -2,8 +2,8 @@ package com.test.privatatms.di
 
 import com.test.privatatms.data.api.AtmApiService
 import com.test.privatatms.data.api.CityApiService
-import com.test.privatatms.di.scope.AtmRetrofitClient
-import com.test.privatatms.di.scope.CityRetrofitClient
+import com.test.privatatms.di.qulifiers.AtmRetrofitClient
+import com.test.privatatms.di.qulifiers.CityRetrofitClient
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -31,6 +31,7 @@ object NetworkModule {
         return retrofit.create(CityApiService::class.java)
     }
 
+    @AtmRetrofitClient
     @Provides
     @Singleton
     @JvmStatic
@@ -41,7 +42,6 @@ object NetworkModule {
             .client(okHttpClient)
             .build()
     }
-
 
     @CityRetrofitClient
     @Provides

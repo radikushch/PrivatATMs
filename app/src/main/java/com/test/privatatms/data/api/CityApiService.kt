@@ -8,5 +8,5 @@ import retrofit2.http.GET
 interface CityApiService {
 
     @GET("https://api.hh.ru/areas/5")
-    fun getUkrainianCities(): Call<ApiResult<CityListResponse>>
+    fun getUkrainianCities(): Call<CityListResponse>
 }

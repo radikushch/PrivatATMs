@@ -2,5 +2,7 @@
     <string name="app_name">PrivatATMs</string>
     <string name="pick_address">Введите адрес</string>
     <string name="loading_error">Loading Error</string>
+    <string name="search">Найти</string>
+    <string name="hint_enter_city">Введите город</string>
 
 </resources>
