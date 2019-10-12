@@ -1,6 +1,11 @@
-package com.test.privatatms.model
+package com.test.privatatms.model.atm
 
+import android.text.Spannable
+import android.text.SpannableString
+import androidx.room.Ignore
 import com.google.gson.annotations.SerializedName
+import com.test.privatatms.consts.ViewTypeConsts
+import com.test.privatatms.presentation.adapter.model.SearchItem
 
 data class Atm(
     @SerializedName("type")
@@ -18,5 +23,14 @@ data class Atm(
     @SerializedName("tw")
     val tw: WorkSchedule,
     var isFavourite: Boolean = false
-)
+): SearchItem {
+
+    @Ignore
+    private val searchField: Spannable = SpannableString(fullAddressRu)
+
+    override fun getSearchField(): Spannable = searchField
+
+    override fun getViewType(): Int = ViewTypeConsts.ATM_VIEW_TYPE
+
+}
 

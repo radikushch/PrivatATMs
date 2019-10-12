@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/shape_cities_dialog"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/citySearchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        tools:text="safasfsafasfasfasfsaf"
+        android:layout_margin="@dimen/clickable_padding"
+        android:textColor="@color/colorAccent"
+        android:hint="@string/hint_enter_city"
+        android:imeOptions="actionDone"
+        android:background="@drawable/shape_search_background"
+        android:gravity="start|center_vertical"
+        android:padding="6dp"
+        android:inputType="text"
+        android:importantForAutofill="no" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/citiesListRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="@dimen/clickable_padding"
+        android:layout_marginEnd="@dimen/clickable_padding"
+        android:visibility="gone"
+        android:background="@drawable/shape_search_background"
+        />
+
+    <TextView
+        android:id="@+id/citySearchAcceptTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/search"
+        android:textColor="@color/colorAccent"
+        android:textSize="22sp"
+        android:padding="@dimen/clickable_padding"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="12dp"
+        />
+
+</LinearLayout>
