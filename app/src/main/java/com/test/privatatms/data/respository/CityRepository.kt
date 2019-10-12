@@ -2,15 +2,14 @@ package com.test.privatatms.data.respository
 
 import com.test.privatatms.data.ApiResult
 import com.test.privatatms.data.datasource.CityDataSource
-import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 
-class CityRespository @Inject constructor(
+class CityRepository @Inject constructor(
     private val cityDataSource: CityDataSource
 ) {
 
-    fun getUkrainianCities(): ApiResult<List<String>> {
-        when (val result = cityDataSource.getUkrainianCities()) {
+    fun getUkrainianCities(): List<String>{
+        return when (val result = cityDataSource.getUkrainianCities()) {
             is ApiResult.Success -> {
                 val cities = ArrayList<String>()
                 val regions = result.data.areas
@@ -21,10 +20,9 @@ class CityRespository @Inject constructor(
                         cities.addAll(region.areas.map { it.name })
                     }
                 }
-                return ApiResult.Success(cities)
+                cities
             }
-            is ApiResult.Error -> return ApiResult.Error(result.exception)
-            else -> return ApiResult.Error(TimeoutException())
+            is ApiResult.Error -> emptyList()
         }
     }
 }

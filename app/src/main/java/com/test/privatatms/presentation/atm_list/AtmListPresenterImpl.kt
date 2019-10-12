@@ -16,7 +16,7 @@ class AtmListPresenterImpl @Inject constructor(
     private val atmRepository: AtmRepository
 ): BasePresenter(), AtmListContract.AtmListPresenter {
 
-    override fun getAtmList(city: String) {
+    override fun loadAtmList(city: String) {
         atmListView.showLoading()
         launch {
             val viewResultState: ViewResultState<List<Atm>>
