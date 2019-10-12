@@ -7,9 +7,9 @@ import com.google.gson.annotations.SerializedName
 import com.test.privatatms.consts.ViewTypeConsts
 import com.test.privatatms.presentation.adapter.model.SearchItem
 
-@Entity(tableName = "atms", indices = [Index(value = ["fullAddressRu"], unique = true)])
+@Entity(tableName = "atms")
 data class Atm(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo(name = "type")
     @SerializedName("type")
     val type: String,
@@ -19,9 +19,6 @@ data class Atm(
     @ColumnInfo(name = "fullAddressRu")
     @SerializedName("fullAddressRu")
     val fullAddressRu: String,
-    @ColumnInfo(name = "placeRU")
-    @SerializedName("placeRU")
-    val placeRU: String,
     @ColumnInfo(name = "latitude")
     @SerializedName("latitude")
     val latitude: Double,

@@ -35,7 +35,9 @@ class AtmsPresenter @Inject constructor(
     }
 
     override fun makeAtmFavorite(atm: Atm) {
-        //todo
         atm.isFavourite = !atm.isFavourite
+        launch {
+            atmRepository.updateAtm(atm)
+        }
     }
 }

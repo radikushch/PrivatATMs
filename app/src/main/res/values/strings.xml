@@ -4,5 +4,6 @@
     <string name="loading_error">Loading Error</string>
     <string name="search">Найти</string>
     <string name="hint_enter_city">Введите город</string>
+    <string name="hint_enter_Address">Введите адрес</string>
 
 </resources>

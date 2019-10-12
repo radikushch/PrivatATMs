@@ -28,11 +28,19 @@ class AtmDataSource @Inject constructor(
         }
     }
 
-    fun getAtmsLocal(city: City): List<Atm> {
-        return atmDao.getAtms(city.name)
+    fun getAtmsLocal(cityName: String): List<Atm> {
+        return atmDao.getAtms(cityName)
     }
 
     fun getFavotitesAtms(): List<Atm> {
         return atmDao.getFavoriteAtms()
+    }
+
+    fun updateAtm(atm: Atm) {
+        atmDao.updateAtm(atm)
+    }
+
+    fun saveAtms(atms: List<Atm>) {
+        atmDao.insertAtms(atms)
     }
 }

@@ -33,17 +33,19 @@
             android:padding="@dimen/clickable_padding"
             />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/atmSearchView"
+        <EditText
+            android:id="@+id/atmSearchEditText"
             android:layout_width="0dp"
             android:layout_height="36dp"
-            style="@style/SearchViewStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/cityImageView"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="0dp"
-            android:layout_marginTop="@dimen/clickable_padding"
-            android:layout_marginStart="@dimen/clickable_padding"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="12dp"
+            android:hint="@string/hint_enter_Address"
+            android:gravity="start|center_vertical"
+            android:padding="6dp"
+            android:background="@drawable/shape_search_background"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

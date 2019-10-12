@@ -1,6 +1,8 @@
 package com.test.privatatms.presentation.atm_list
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import com.test.privatatms.R
@@ -60,10 +62,12 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
     }
 
     override fun showLoading() {
+        atmsRecyclerView.invisible()
         loadingProgressBar.visible()
     }
 
     override fun hideLoading() {
+        atmsRecyclerView.visible()
         loadingProgressBar.invisible()
     }
 
@@ -75,6 +79,15 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
         cityImageView.setOnClickListener {
             openCitiesFragmentChooser()
         }
+        atmSearchEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //atmAdapter.search(p0.toString())
+            }
+        })
     }
 
     private fun openCitiesFragmentChooser() {
