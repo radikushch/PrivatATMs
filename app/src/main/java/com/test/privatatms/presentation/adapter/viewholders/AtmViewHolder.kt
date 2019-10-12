@@ -1,19 +1,21 @@
-package com.test.privatatms.presentation.atm_list.adapter
+package com.test.privatatms.presentation.adapter.viewholders
 
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.test.privatatms.R
 import com.test.privatatms.model.atm.Atm
+import com.test.privatatms.presentation.adapter.BaseViewHolder
+import com.test.privatatms.presentation.adapter.model.ListItem
 import kotlinx.android.synthetic.main.item_atm.view.*
 
-class AtmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class AtmViewHolder(itemView: View) : BaseViewHolder(itemView) {
 
-    fun bind(atm: Atm) {
+    override fun bind(item: ListItem) {
+        if(item !is Atm) return
         itemView.apply {
-            atmCityTextView.text = atm.cityRU
-            atmAddressTextView.text = atm.fullAddressRu
-            if (atm.isFavourite) {
+            atmCityTextView.text = item.cityRU
+            atmAddressTextView.text = item.fullAddressRu
+            if (item.isFavourite) {
                 atmFavouriteImageView
                     .setImageDrawable(
                         ContextCompat.getDrawable(
@@ -33,8 +35,9 @@ class AtmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 
-    fun rebind(atm: Atm) {
-        if (atm.isFavourite) {
+    override fun rebind(item: ListItem) {
+        if(item !is Atm) return
+        if (item.isFavourite) {
             itemView.atmFavouriteImageView
                 .setImageDrawable(
                     ContextCompat.getDrawable(

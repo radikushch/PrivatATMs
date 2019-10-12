@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.annotation.LayoutRes
-import androidx.fragment.app.DialogFragment
+import dagger.android.support.DaggerDialogFragment
 
-abstract class  BaseDialogFragment : DialogFragment() {
+abstract class  BaseDialogFragment : DaggerDialogFragment() {
 
     @LayoutRes
     abstract fun layout(): Int

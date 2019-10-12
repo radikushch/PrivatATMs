@@ -1,18 +1,20 @@
 package com.test.privatatms.presentation.atm_list
 
 import android.os.Bundle
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import com.test.privatatms.R
 import com.test.privatatms.presentation.base.BaseFragment
 import javax.inject.Inject
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.privatatms.extensions.invisible
 import com.test.privatatms.extensions.visible
 import com.test.privatatms.model.atm.Atm
 import com.test.privatatms.presentation.ViewResultState
-import com.test.privatatms.presentation.atm_list.adapter.AtmAdapter
+import com.test.privatatms.presentation.adapter.SearchAdapter
 import com.test.privatatms.presentation.cities_list.CitiesFragment
 import kotlinx.android.synthetic.main.fragment_atm_list.*
 
@@ -21,14 +23,25 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView {
     @Inject
     lateinit var atmListPresenter: AtmsPresenter
 
-    private val atmAdapter: AtmAdapter by lazy {
-        AtmAdapter(ArrayList(),
+    private val spanHighlight: ForegroundColorSpan by lazy {
+        ForegroundColorSpan(
+            ResourcesCompat.getColor(
+                resources,
+                R.color.colorAccent,
+                null
+            )
+        )
+    }
+
+    private val atmAdapter: SearchAdapter by lazy {
+        SearchAdapter(ArrayList(),
             {
                 openAtmDetailScreen()
             },
             {
-                atmFavoriteClick(it)
-            })
+                atmFavoriteClick(it as Atm)
+            },
+            spanHighlight)
     }
 
     private fun atmFavoriteClick(atm: Atm) {
