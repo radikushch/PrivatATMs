@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.test.privatatms.model.atm.Atm
 import com.test.privatatms.model.city.City
 
-@Database(entities = [City::class, Atm::class], version = 4, exportSchema = false)
+@Database(entities = [City::class, Atm::class], version = 5, exportSchema = false)
 abstract class PrivatATMsDatabase : RoomDatabase() {
 
     abstract fun cityDao(): CityDao

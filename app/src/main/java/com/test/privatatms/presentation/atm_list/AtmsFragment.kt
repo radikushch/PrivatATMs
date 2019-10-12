@@ -43,7 +43,7 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
     private val atmAdapter: SearchAdapter by lazy {
         SearchAdapter(ArrayList(),
             {
-                openAtmDetailScreen()
+                openAtmDetailScreen(it as Atm)
             },
             {
                 atmFavoriteClick(it as Atm)
@@ -55,8 +55,8 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
         atmListPresenter.makeAtmFavorite(atm)
     }
 
-    private fun openAtmDetailScreen() {
-        //todo
+    private fun openAtmDetailScreen(atm: Atm) {
+        navController.navigate(AtmsFragmentDirections.actionAtmListFragmentToAtmDetailFragment(atm))
     }
 
     override fun layout(): Int = R.layout.fragment_atm_list
