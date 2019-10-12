@@ -1,6 +1,7 @@
 package com.test.privatatms.presentation.cities_list
 
 import com.test.privatatms.data.respository.CityRepository
+import com.test.privatatms.model.city.City
 import com.test.privatatms.presentation.base.BasePresenter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,8 +16,10 @@ class CitiesPresenter @Inject constructor(
     override fun loadUkrainianCities() {
         launch {
             val cities = cityRepository.getUkrainianCities()
+            val list = ArrayList<City>()
+            cities.forEach { list.add(City(it)) }
             withContext(Dispatchers.Main) {
-                cityListView.setupCitiesList(cities)
+                cityListView.setupCitiesList(list)
             }
         }
     }

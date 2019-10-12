@@ -4,6 +4,7 @@ import com.test.privatatms.R
 import com.test.privatatms.data.ApiResult
 import com.test.privatatms.data.respository.AtmRepository
 import com.test.privatatms.model.atm.Atm
+import com.test.privatatms.model.city.City
 import com.test.privatatms.presentation.ViewResultState
 import com.test.privatatms.presentation.base.BasePresenter
 import kotlinx.coroutines.Dispatchers
@@ -16,11 +17,11 @@ class AtmsPresenter @Inject constructor(
     private val atmRepository: AtmRepository
 ): BasePresenter(), AtmListContract.AtmListPresenter {
 
-    override fun loadAtmList(city: String) {
+    override fun loadAtmList(city: City) {
         atmListView.showLoading()
         launch {
             val viewResultState: ViewResultState<List<Atm>>
-            val result = atmRepository.getAtms(city)
+            val result = atmRepository.getAtms(city.name)
             viewResultState = if(result is ApiResult.Success) {
                 ViewResultState(isSuccess = true, data = result.data)
             }else {

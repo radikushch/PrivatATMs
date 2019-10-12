@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.test.privatatms.extensions.invisible
 import com.test.privatatms.extensions.visible
 import com.test.privatatms.model.atm.Atm
+import com.test.privatatms.model.city.City
 import com.test.privatatms.presentation.ViewResultState
 import com.test.privatatms.presentation.adapter.SearchAdapter
 import com.test.privatatms.presentation.cities_list.CitiesFragment
 import kotlinx.android.synthetic.main.fragment_atm_list.*
 
-class AtmsFragment : BaseFragment(), AtmListContract.AtmListView {
+class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment.OnSearchClickListener {
+
 
     @Inject
     lateinit var atmListPresenter: AtmsPresenter
@@ -69,7 +71,14 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        openCitiesFragmentChooser()
         scrollTopFAB.setOnClickListener { atmsRecyclerView.scrollToPosition(0) }
+        cityImageView.setOnClickListener {
+            openCitiesFragmentChooser()
+        }
+    }
+
+    private fun openCitiesFragmentChooser() {
         CitiesFragment().show(childFragmentManager, "tag")
     }
 
@@ -101,5 +110,9 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView {
                 }
             }
         })
+    }
+
+    override fun onSearchClick(city: City) {
+        atmListPresenter.loadAtmList(city)
     }
 }

@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/citySearchTextView"
+        android:id="@+id/citySearchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"
@@ -15,17 +15,21 @@
         android:layout_margin="@dimen/clickable_padding"
         android:textColor="@color/colorAccent"
         android:hint="@string/hint_enter_city"
+        android:imeOptions="actionDone"
         android:background="@drawable/shape_search_background"
         android:gravity="start|center_vertical"
         android:padding="6dp"
+        android:inputType="text"
         android:importantForAutofill="no" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/citiesListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/clickable_padding"
+        android:layout_height="400dp"
+        android:layout_marginStart="@dimen/clickable_padding"
+        android:layout_marginEnd="@dimen/clickable_padding"
         android:visibility="gone"
+        android:background="@drawable/shape_search_background"
         />
 
     <TextView
