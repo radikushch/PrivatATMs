@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.fragment_atm_list.*
 
 class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment.OnSearchClickListener {
 
-
     @Inject
     lateinit var atmListPresenter: AtmsPresenter
 
