@@ -2,7 +2,6 @@ package com.test.privatatms.model.atm
 
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 data class WorkSchedule(
@@ -57,5 +56,9 @@ data class WorkSchedule(
         override fun newArray(size: Int): Array<WorkSchedule?> {
             return arrayOfNulls(size)
         }
+    }
+
+    override fun toString(): String {
+        return "Понедельник: $mon\nВторник: $tue\nСреда: $wed\nЧетверг: $thu\nПятниця: $fri\nСубота: $sat\nВоскресенье: $sun"
     }
 }
