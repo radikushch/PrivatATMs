@@ -1,12 +1,15 @@
 package com.test.privatatms.presentation.atm_list
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import com.test.privatatms.R
 import com.test.privatatms.presentation.base.BaseFragment
 import javax.inject.Inject
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,9 +24,11 @@ import kotlinx.android.synthetic.main.fragment_atm_list.*
 
 class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment.OnSearchClickListener {
 
-
     @Inject
     lateinit var atmListPresenter: AtmsPresenter
+
+    private var selectedCity: City? = null
+    private var isFavoriteList: Boolean = false
 
     private val spanHighlight: ForegroundColorSpan by lazy {
         ForegroundColorSpan(
@@ -61,10 +66,12 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
     }
 
     override fun showLoading() {
+        atmsRecyclerView.invisible()
         loadingProgressBar.visible()
     }
 
     override fun hideLoading() {
+        atmsRecyclerView.visible()
         loadingProgressBar.invisible()
     }
 
@@ -72,10 +79,37 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         openCitiesFragmentChooser()
-        scrollTopFAB.setOnClickListener { atmsRecyclerView.scrollToPosition(0) }
+        scrollTopFAB.setOnClickListener {
+            atmsRecyclerView.scrollToPosition(0)
+        }
         cityImageView.setOnClickListener {
             openCitiesFragmentChooser()
         }
+        atmSearchEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                atmAdapter.search(p0.toString())
+            }
+        })
+        favoritesImageView.setOnClickListener {
+            onFavoriteListClick()
+        }
+    }
+
+    private fun onFavoriteListClick() {
+        if(isFavoriteList) {
+            favoritesImageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_border))
+            isFavoriteList = false
+            selectedCity?.let { atmListPresenter.loadAtmList(it) }
+        }else {
+            favoritesImageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite))
+            isFavoriteList = true
+            atmListPresenter.loadFavouritesAtms()
+        }
+        atmListPresenter.loadFavouritesAtms()
     }
 
     private fun openCitiesFragmentChooser() {
@@ -88,6 +122,7 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
                 atmAdapter.swapData(it)
             }
         } else {
+            atmAdapter.swapData(emptyList())
             Toast.makeText(
                 requireContext(),
                 getString(viewResultState.error!!),
@@ -113,6 +148,7 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
     }
 
     override fun onSearchClick(city: City) {
+        selectedCity = city
         atmListPresenter.loadAtmList(city)
     }
 }

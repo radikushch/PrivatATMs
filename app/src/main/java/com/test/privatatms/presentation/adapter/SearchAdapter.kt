@@ -21,7 +21,7 @@ class SearchAdapter(
     private val foregroundColorSpan: ForegroundColorSpan
 ) : RecyclerView.Adapter<BaseViewHolder>(){
 
-    private val fullDataList = data
+    private val fullDataList = ArrayList(data)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -87,6 +87,8 @@ class SearchAdapter(
     fun swapData(newData: List<SearchItem>) {
         data.clear()
         data.addAll(newData)
+        fullDataList.clear()
+        fullDataList.addAll(newData)
         notifyDataSetChanged()
     }
 

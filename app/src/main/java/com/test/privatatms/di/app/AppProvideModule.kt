@@ -1,6 +1,7 @@
 package com.test.privatatms.di.app
 
 import android.app.Application
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -11,5 +12,5 @@ object AppProvideModule {
     @Singleton
     @JvmStatic
     @Provides
-    fun provideContext(app: Application) = app
+    fun provideContext(app: Application): Context = app
 }
