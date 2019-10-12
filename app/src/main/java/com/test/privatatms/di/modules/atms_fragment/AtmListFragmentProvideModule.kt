@@ -1,13 +1,13 @@
-package com.test.privatatms.di
+package com.test.privatatms.di.modules.atms_fragment
 
 import com.test.privatatms.data.respository.AtmRepository
 import com.test.privatatms.presentation.atm_list.AtmListContract
-import com.test.privatatms.presentation.atm_list.AtmListPresenterImpl
+import com.test.privatatms.presentation.atm_list.AtmsPresenter
 import dagger.Module
 import dagger.Provides
 
 @Module
-object AtmListFragmentModule {
+object AtmListFragmentProvideModule {
 
     @JvmStatic
     @Provides
@@ -15,6 +15,6 @@ object AtmListFragmentModule {
         atmListView: AtmListContract.AtmListView,
         atmRepository: AtmRepository
     ): AtmListContract.AtmListPresenter {
-        return AtmListPresenterImpl(atmListView, atmRepository)
+        return AtmsPresenter(atmListView, atmRepository)
     }
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class AtmListPresenterImpl @Inject constructor(
+class AtmsPresenter @Inject constructor(
     private val atmListView: AtmListContract.AtmListView,
     private val atmRepository: AtmRepository
 ): BasePresenter(), AtmListContract.AtmListPresenter {

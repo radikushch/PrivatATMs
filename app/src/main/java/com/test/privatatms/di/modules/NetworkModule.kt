@@ -1,4 +1,4 @@
-package com.test.privatatms.di
+package com.test.privatatms.di.modules
 
 import com.test.privatatms.data.api.AtmApiService
 import com.test.privatatms.data.api.CityApiService

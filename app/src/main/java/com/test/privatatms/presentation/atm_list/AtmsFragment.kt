@@ -16,10 +16,10 @@ import com.test.privatatms.presentation.atm_list.adapter.AtmAdapter
 import com.test.privatatms.presentation.cities_list.CitiesFragment
 import kotlinx.android.synthetic.main.fragment_atm_list.*
 
-class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
+class AtmsFragment : BaseFragment(), AtmListContract.AtmListView {
 
     @Inject
-    lateinit var atmListPresenter: AtmListPresenterImpl
+    lateinit var atmListPresenter: AtmsPresenter
 
     private val atmAdapter: AtmAdapter by lazy {
         AtmAdapter(ArrayList(),
