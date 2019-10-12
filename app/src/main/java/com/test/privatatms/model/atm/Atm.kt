@@ -3,11 +3,13 @@ package com.test.privatatms.model.atm
 import android.text.Spannable
 import android.text.SpannableString
 import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.test.privatatms.consts.ViewTypeConsts
 import com.test.privatatms.presentation.adapter.model.SearchItem
 
 data class Atm(
+    @PrimaryKey(autoGenerate = true) val id: Long,
     @SerializedName("type")
     val type: String,
     @SerializedName("cityRU")

@@ -79,7 +79,7 @@ class CitiesFragment : BaseDialogFragment(), CityListContract.CityListView{
             }
         })
         citySearchAcceptTextView.setOnClickListener {
-            onSearchClickListener?.onSearchClick(City(citySearchEditText.text.toString()))
+            onSearchClickListener?.onSearchClick(City(name = citySearchEditText.text.toString()))
             dismissAllowingStateLoss()
         }
     }

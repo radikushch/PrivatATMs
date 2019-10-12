@@ -1,19 +1,27 @@
 package com.test.privatatms.utils
 
-import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
+import java.net.InetAddress
+import java.net.UnknownHostException
+import java.util.concurrent.*
 
 fun isOnline(): Boolean {
-    return try {
-        val urlc = URL("http://www.google.com").openConnection() as HttpURLConnection
-        urlc.setRequestProperty("User-Agent", "Test")
-        urlc.setRequestProperty("Connection", "close")
-        urlc.connectTimeout = 1500
-        urlc.connect()
-        urlc.responseCode == 200
-    } catch (e: IOException) {
-        false
+    var netAddress: InetAddress? = null
+    try {
+        val future = Executors.newSingleThreadExecutor().submit(Callable<InetAddress> {
+            try {
+                InetAddress.getByName("google.com")
+            } catch (e: UnknownHostException) {
+                null
+            }
+        })
+        netAddress = future.get(10000, TimeUnit.MILLISECONDS)
+        future.cancel(true)
+    } catch (e: InterruptedException) {
+    } catch (e: ExecutionException) {
+    } catch (e: TimeoutException) {
     }
+
+    return netAddress != null && !netAddress.equals("")
 }
+
 
