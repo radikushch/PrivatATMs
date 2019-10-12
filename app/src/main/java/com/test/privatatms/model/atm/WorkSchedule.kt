@@ -1,6 +1,7 @@
 package com.test.privatatms.model.atm
 
-import androidx.room.Entity
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class WorkSchedule(
@@ -20,4 +21,44 @@ data class WorkSchedule(
     val sun: String,
     @SerializedName("hol")
     val hol: String
-)
+): Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: ""
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(mon)
+        parcel.writeString(tue)
+        parcel.writeString(wed)
+        parcel.writeString(thu)
+        parcel.writeString(fri)
+        parcel.writeString(sat)
+        parcel.writeString(sun)
+        parcel.writeString(hol)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<WorkSchedule> {
+        override fun createFromParcel(parcel: Parcel): WorkSchedule {
+            return WorkSchedule(parcel)
+        }
+
+        override fun newArray(size: Int): Array<WorkSchedule?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+    override fun toString(): String {
+        return "Понедельник: $mon\nВторник: $tue\nСреда: $wed\nЧетверг: $thu\nПятниця: $fri\nСубота: $sat\nВоскресенье: $sun"
+    }
+}

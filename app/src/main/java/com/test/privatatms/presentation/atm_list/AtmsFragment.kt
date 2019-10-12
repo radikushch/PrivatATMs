@@ -43,7 +43,7 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
     private val atmAdapter: SearchAdapter by lazy {
         SearchAdapter(ArrayList(),
             {
-                openAtmDetailScreen()
+                openAtmDetailScreen(it as Atm)
             },
             {
                 atmFavoriteClick(it as Atm)
@@ -55,8 +55,8 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
         atmListPresenter.makeAtmFavorite(atm)
     }
 
-    private fun openAtmDetailScreen() {
-        //todo
+    private fun openAtmDetailScreen(atm: Atm) {
+        navController.navigate(AtmsFragmentDirections.actionAtmListFragmentToAtmDetailFragment(atm))
     }
 
     override fun layout(): Int = R.layout.fragment_atm_list
@@ -75,10 +75,14 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
         loadingProgressBar.invisible()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        openCitiesFragmentChooser()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        openCitiesFragmentChooser()
         scrollTopFAB.setOnClickListener {
             atmsRecyclerView.scrollToPosition(0)
         }
@@ -103,7 +107,7 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
         if(isFavoriteList) {
             favoritesImageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_border))
             isFavoriteList = false
-            selectedCity?.let { atmListPresenter.loadAtmList(it) }
+            atmListPresenter.loadAtmList(selectedCity ?: City(name = ""))
         }else {
             favoritesImageView.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite))
             isFavoriteList = true

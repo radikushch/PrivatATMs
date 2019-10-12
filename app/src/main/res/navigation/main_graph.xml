@@ -6,5 +6,21 @@
     <fragment
         android:id="@+id/atmListFragment"
         android:name="com.test.privatatms.presentation.atm_list.AtmsFragment"
-        android:label="AtmListFragment" />
+        android:label="AtmListFragment" >
+        <action
+            android:id="@+id/action_atmListFragment_to_atmDetailFragment"
+            app:destination="@id/atmDetailFragment" >
+            <argument
+                android:name="atm"
+                app:argType="com.test.privatatms.model.atm.Atm" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/atmDetailFragment"
+        android:name="com.test.privatatms.presentation.atm_detail.AtmDetailFragment"
+        android:label="AtmDetailFragment" >
+        <argument
+            android:name="atm"
+            app:argType="com.test.privatatms.model.atm.Atm" />
+    </fragment>
 </navigation>
