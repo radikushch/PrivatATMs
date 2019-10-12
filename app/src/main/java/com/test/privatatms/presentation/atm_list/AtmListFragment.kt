@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.privatatms.extensions.invisible
 import com.test.privatatms.extensions.visible
-import com.test.privatatms.model.Atm
+import com.test.privatatms.model.atm.Atm
 import com.test.privatatms.presentation.ViewResultState
 import com.test.privatatms.presentation.atm_list.adapter.AtmAdapter
 import kotlinx.android.synthetic.main.fragment_atm_list.*
@@ -56,7 +56,6 @@ class AtmListFragment : BaseFragment(), AtmListContract.AtmListView {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         scrollTopFAB.setOnClickListener { atmsRecyclerView.scrollToPosition(0) }
-
         atmListPresenter.getAtmList("Киев")
     }
 

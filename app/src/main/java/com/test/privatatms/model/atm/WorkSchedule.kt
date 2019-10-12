@@ -1,4 +1,4 @@
-package com.test.privatatms.model
+package com.test.privatatms.model.atm
 
 import com.google.gson.annotations.SerializedName
 

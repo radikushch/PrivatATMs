@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.test.privatatms.R
-import com.test.privatatms.model.Atm
+import com.test.privatatms.model.atm.Atm
 import kotlinx.android.synthetic.main.item_atm.view.*
 
 class AtmAdapter(

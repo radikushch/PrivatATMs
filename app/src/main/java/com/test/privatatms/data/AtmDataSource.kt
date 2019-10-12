@@ -1,7 +1,8 @@
 package com.test.privatatms.data
 
 import com.test.privatatms.ApiException
-import com.test.privatatms.model.AtmListResponse
+import com.test.privatatms.data.api.AtmApiService
+import com.test.privatatms.model.atm.AtmListResponse
 import javax.inject.Inject
 
 class AtmDataSource @Inject constructor(

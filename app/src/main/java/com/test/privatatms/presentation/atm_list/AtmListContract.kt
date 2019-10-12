@@ -1,6 +1,6 @@
 package com.test.privatatms.presentation.atm_list
 
-import com.test.privatatms.model.Atm
+import com.test.privatatms.model.atm.Atm
 import com.test.privatatms.presentation.MvpContract
 import com.test.privatatms.presentation.ViewResultState
 

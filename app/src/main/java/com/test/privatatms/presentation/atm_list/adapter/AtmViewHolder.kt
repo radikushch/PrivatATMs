@@ -4,9 +4,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.test.privatatms.R
-import com.test.privatatms.extensions.invisible
-import com.test.privatatms.extensions.visible
-import com.test.privatatms.model.Atm
+import com.test.privatatms.model.atm.Atm
 import kotlinx.android.synthetic.main.item_atm.view.*
 
 class AtmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

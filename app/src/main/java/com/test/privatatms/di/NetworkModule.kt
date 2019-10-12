@@ -1,6 +1,9 @@
 package com.test.privatatms.di
 
-import com.test.privatatms.data.AtmApiService
+import com.test.privatatms.data.api.AtmApiService
+import com.test.privatatms.data.api.CityApiService
+import com.test.privatatms.di.scope.AtmRetrofitClient
+import com.test.privatatms.di.scope.CityRetrofitClient
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -11,21 +14,42 @@ import javax.inject.Singleton
 @Module
 object NetworkModule {
 
-    private const val BASE_ENDPOINT = "https://api.privatbank.ua/"
+    private const val BASE_ATM_ENDPOINT = "https://api.privatbank.ua/"
+    private const val BASE_CITY_ENDPOINT = "https://api.hh.ru/"
 
     @Provides
     @Singleton
     @JvmStatic
-    fun provideAtmSErvice(retrofit: Retrofit): AtmApiService {
+    fun provideAtmService(@AtmRetrofitClient retrofit: Retrofit): AtmApiService {
         return retrofit.create(AtmApiService::class.java)
     }
 
     @Provides
     @Singleton
     @JvmStatic
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideCityService(@CityRetrofitClient retrofit: Retrofit): CityApiService {
+        return retrofit.create(CityApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideAtmRetrofitClient(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_ENDPOINT)
+            .baseUrl(BASE_ATM_ENDPOINT)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+    }
+
+
+    @CityRetrofitClient
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideCitiesRetrofitClient(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_CITY_ENDPOINT)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

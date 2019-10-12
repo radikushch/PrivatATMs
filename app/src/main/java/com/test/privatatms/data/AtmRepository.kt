@@ -1,6 +1,6 @@
 package com.test.privatatms.data
 
-import com.test.privatatms.model.Atm
+import com.test.privatatms.model.atm.Atm
 import javax.inject.Inject
 
 class AtmRepository @Inject constructor(
