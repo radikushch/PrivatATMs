@@ -1,5 +1,6 @@
 package com.test.privatatms.presentation.atm_list
 
+import android.content.res.Resources
 import com.test.privatatms.R
 import com.test.privatatms.data.ApiResult
 import com.test.privatatms.data.respository.AtmRepository
@@ -10,6 +11,7 @@ import com.test.privatatms.presentation.base.BasePresenter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 
 class AtmsPresenter @Inject constructor(
@@ -22,10 +24,13 @@ class AtmsPresenter @Inject constructor(
         launch {
             val viewResultState: ViewResultState<List<Atm>>
             val result = atmRepository.getAtms(city.name)
-            viewResultState = if(result is ApiResult.Success) {
-                ViewResultState(isSuccess = true, data = result.data)
-            }else {
-                ViewResultState(isSuccess = false, error = R.string.loading_error)
+            viewResultState = when (result) {
+                is ApiResult.Success -> ViewResultState(isSuccess = true, data = result.data)
+                is ApiResult.Error -> when(result.exception) {
+                    is Resources.NotFoundException -> ViewResultState(isSuccess = false, error = R.string.empty_result)
+                    is TimeoutException -> ViewResultState(isSuccess = false, error = R.string.no_internet)
+                    else -> ViewResultState(isSuccess = false, error = R.string.loading_error)
+                }
             }
             withContext(Dispatchers.Main) {
                 atmListView.swapAtmList(viewResultState)
@@ -40,4 +45,5 @@ class AtmsPresenter @Inject constructor(
             atmRepository.updateAtm(atm)
         }
     }
+
 }

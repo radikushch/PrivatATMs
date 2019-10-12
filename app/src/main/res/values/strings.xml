@@ -5,5 +5,7 @@
     <string name="search">Найти</string>
     <string name="hint_enter_city">Введите город</string>
     <string name="hint_enter_Address">Введите адрес</string>
+    <string name="empty_result">В єтом регионе нету банкоматов</string>
+    <string name="no_internet">Нету интернета</string>
 
 </resources>

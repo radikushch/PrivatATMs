@@ -85,7 +85,7 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //atmAdapter.search(p0.toString())
+                atmAdapter.search(p0.toString())
             }
         })
     }
@@ -100,6 +100,7 @@ class AtmsFragment : BaseFragment(), AtmListContract.AtmListView, CitiesFragment
                 atmAdapter.swapData(it)
             }
         } else {
+            atmAdapter.swapData(emptyList())
             Toast.makeText(
                 requireContext(),
                 getString(viewResultState.error!!),
