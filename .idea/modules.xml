@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidStudioProjects-PrivatATMs.iml" filepath="$PROJECT_DIR$/AndroidStudioProjects-PrivatATMs.iml" group="PrivatATMs" />
+      <module fileurl="file://$PROJECT_DIR$/app/AndroidStudioProjects-PrivatATMs-app.iml" filepath="$PROJECT_DIR$/app/AndroidStudioProjects-PrivatATMs-app.iml" group="PrivatATMs/app" />
       <module fileurl="file://$PROJECT_DIR$/PrivatATMs.iml" filepath="$PROJECT_DIR$/PrivatATMs.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/PrivatATMs-app.iml" filepath="$PROJECT_DIR$/app/PrivatATMs-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PrivatATMs</string>
+    <string name="app_name">PrivatBankATMs</string>
     <string name="pick_address">Введите адрес</string>
     <string name="loading_error">Loading Error</string>
     <string name="search">Найти</string>
